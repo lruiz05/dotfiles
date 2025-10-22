@@ -9,9 +9,20 @@ require("lazy").setup({
   },
 
   -- 2. Plugins esenciales (LSP y Mason)
-  { "neovim/nvim-lspconfig" },
-  { "williamboman/mason.nvim" },
-  { "williamboman/mason-lspconfig.nvim" },
+  -- { "neovim/nvim-lspconfig" },
+  -- { "williamboman/mason.nvim" },
+  -- { "williamboman/mason-lspconfig.nvim" },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "williamboman/mason.nvim", config = true }, -- Mason se carga primero
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+      require("config.lsp") -- tu archivo con mason_lspconfig.setup() y lspconfig.setup()
+    end,
+  },
 
   -- 3. Treesitter
   {
