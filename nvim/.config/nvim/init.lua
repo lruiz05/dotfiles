@@ -1,5 +1,17 @@
 -- ~/.config/nvim/init.lua
-vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
+--vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
 require("config.lazy")
 -- require("lazy").setup({
@@ -37,6 +49,11 @@ require("config.lsp")        -- Configuración LSP
 require("config.treesitter") -- Configuración Treesitter
 require("config.keymaps")    -- Keymaps personalizados
 require("config.lualine")
+
+local osd_ok, osd = pcall(require, "osdetect")
+if osd_ok and osd.is_linux then
+  require("config.linux").setup()
+end
 
 -- Tema de colores
 vim.cmd.colorscheme("tokyonight-night")
