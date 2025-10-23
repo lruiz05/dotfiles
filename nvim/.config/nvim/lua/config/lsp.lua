@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 
@@ -24,27 +23,25 @@ mason_lspconfig.setup({
     "jsonls",
   },
   automatic_installation = true,
-})
-
--- Configurar cada LSP
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    lspconfig[server_name].setup({
-      on_attach = function(client, bufnr)
-        -- Keymaps específicos del LSP
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Ir a definición" })
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Ayuda flotante" })
-      end
-    })
-  end,
+  handlers = {
+    function(server_name)
+      require('lsconfig')[server_name].setup({
+        on_attach = function(client, bufnr)
+          -- Keymaps específicos del LSP
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Ir a definición" })
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Ayuda flotante" })
+        end
+      })
+    end,
+  },
 })
 
 -- Configuración especial para Lua
-lspconfig.lua_ls.setup({
+vim.lsp.config['lua_ls'] = {
   settings = {
     Lua = {
       diagnostics = { globals = { "vim" } },
       workspace = { checkThirdParty = false },
     }
   }
-})
+}
