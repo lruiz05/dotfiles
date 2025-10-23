@@ -8,6 +8,12 @@ require("lazy").setup({
     end,
   },
 
+  -- {
+  --   "vhyrro/luarocks.nvim",
+  --   priority = 1001,
+  --   config = true,
+  -- },
+
   -- 2. Plugins esenciales (LSP y Mason)
   -- { "neovim/nvim-lspconfig" },
   -- { "williamboman/mason.nvim" },
@@ -171,14 +177,20 @@ require("lazy").setup({
   },
 
   -- sistema de toma de notas diseñado para Neovim, similar a Org-mode de Emacs
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("config.neorg").setup()
-    end
-  },
+  -- {
+  --   "nvim-neorg/neorg",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-neorg/neorg-telescope",
+  --     "nvim-neorg/lua-utils.nvim",
+  --     "vhrro/luarocks.nvim",
+  --   },
+  --   build = ":Neorg sync-parsers",
+  --   rocks = { "pathlib" },
+  --   config = function()
+  --     require("config.neorg").setup()
+  --   end
+  -- },
 
   { "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
