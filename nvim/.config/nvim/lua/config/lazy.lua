@@ -22,6 +22,15 @@ require("lazy").setup({
     end,
   },
 
+{
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    event = "BufReadPost",
+    config = function()
+      require("config.ufo")   -- 👈 carga la configuración desde lua/config/ufo.lua
+    end,
+  },
+
   -- 4. Tu tema de colores
   {
     "folke/tokyonight.nvim",
