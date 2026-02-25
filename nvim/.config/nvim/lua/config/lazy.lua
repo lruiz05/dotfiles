@@ -9,9 +9,9 @@ require("lazy").setup({
   },
 
   -- 2. Plugins esenciales (LSP y Mason)
-  { "neovim/nvim-lspconfig" },
+  { "neovim/nvim-lspconfig", commit = "0ef64599b8aa0187ee5f6d92cb39c951f348f041" },
   { "williamboman/mason.nvim" },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason-lspconfig.nvim", version = "v1.32.0" },
 
   -- 3. Treesitter
   {
@@ -171,7 +171,6 @@ require("lazy").setup({
   -- sistema de toma de notas diseñado para Neovim, similar a Org-mode de Emacs
   {
     "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("config.neorg").setup()

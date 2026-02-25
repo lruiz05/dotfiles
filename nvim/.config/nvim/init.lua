@@ -1,6 +1,29 @@
 -- ~/.config/nvim/init.lua
 vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
 
+-- Algunas builds dev reportan nvim-0.11 sin exponer todas las APIs de 0.11.
+-- Forzamos detección conservadora para que los plugins usen rutas compatibles.
+do
+  local has = vim.fn.has
+  if has("nvim-0.11") == 1 and ((vim.lsp and vim.lsp.config == nil) or vim.hl == nil) then
+    vim.fn.has = function(feature)
+      if feature == "nvim-0.11" then
+        return 0
+      end
+      return has(feature)
+    end
+  end
+end
+
+-- Compatibilidad para plugins que usan vim.hl.range en builds donde solo existe vim.highlight.range
+vim.hl = vim.hl or {}
+if vim.hl.range == nil and vim.highlight and vim.highlight.range then
+  vim.hl.range = vim.highlight.range
+end
+if vim.hl.priorities == nil and vim.highlight and vim.highlight.priorities then
+  vim.hl.priorities = vim.highlight.priorities
+end
+
 require("config.lazy")
 -- require("lazy").setup({
 --   -- Gestor de plugins (obligatorio)
