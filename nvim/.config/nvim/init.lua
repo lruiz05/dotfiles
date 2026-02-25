@@ -12,6 +12,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Compatibilidad: en algunas distros el binario es "fdfind" en lugar de "fd".
+if vim.fn.executable("fd") == 0 and vim.fn.executable("fdfind") == 1 then
+  vim.env.FZF_DEFAULT_COMMAND = "fdfind --hidden --exclude .git"
+end
+
 -- Algunas builds dev reportan nvim-0.11 sin exponer todas las APIs de 0.11.
 -- Forzamos detección conservadora para que los plugins usen rutas compatibles.
 do
