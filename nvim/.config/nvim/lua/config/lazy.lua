@@ -1,12 +1,9 @@
 require("lazy").setup({
-  -- 1. Gestor de plugins (DEBE ser el primero)
-  {
-    "folke/lazy.nvim",
-    priority = 10000, -- Máxima prioridad
-    config = function()
-      require("lazy").setup({}, {}) -- Configuración base
-    end,
-  },
+  -- {
+  --   "vhyrro/luarocks.nvim",
+  --   priority = 1001,
+  --   config = true,
+  -- },
 
   -- 2. Plugins esenciales (LSP y Mason)
   { "neovim/nvim-lspconfig", commit = "0ef64599b8aa0187ee5f6d92cb39c951f348f041" },
