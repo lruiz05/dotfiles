@@ -7,9 +7,9 @@ M.setup = function()
       ["core.dirman"] = { -- Manejo de espacios de trabajo
         config = {
           workspaces = {
-            journal = "~/Notes/Journal"
+            notes = "~/Notes"
           },
-          default_workspace = "journal"
+          default_workspace = "notes"
         }
       },
       ["core.concealer"] = {}, -- Oculta caracteres especiales (*, -, #)
@@ -23,8 +23,8 @@ M.setup = function()
       },
       ["core.journal"] = { -- Habilita el sistema de diario
         config = {
-          workspace = "journal",
-          journal_folder = ".",
+          workspace = "notes",
+          journal_folder = "Journal",
           strategy = "nested"
         }
       }
