@@ -1,0 +1,13 @@
+[delta]
+    navigate = true
+    line-numbers = true
+    dark = true
+    syntax-theme = Monokai Extended
+    plus-style = syntax "#1f3a2a"
+    plus-emph-style = syntax bold "#2d5a3c"
+    minus-style = syntax "#3f1f2b"
+    minus-emph-style = syntax bold "#5a2d3c"
+    hunk-header-style = file line-number bold yellow
+    file-style = bold yellow
+    commit-style = bold yellow
+    whitespace-error-style = 22 reverse
