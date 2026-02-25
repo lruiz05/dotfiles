@@ -7,7 +7,7 @@ M.setup = function()
       ["core.dirman"] = { -- Manejo de espacios de trabajo
         config = {
           workspaces = {
-            journal = "~/Notas/Journal"
+            journal = "~/Notes/Journal"
           },
           default_workspace = "journal"
         }
@@ -23,6 +23,8 @@ M.setup = function()
       },
       ["core.journal"] = { -- Habilita el sistema de diario
         config = {
+          workspace = "journal",
+          journal_folder = ".",
           strategy = "nested"
         }
       }
