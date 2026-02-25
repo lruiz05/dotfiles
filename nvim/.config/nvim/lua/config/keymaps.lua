@@ -1,10 +1,10 @@
 vim.g.mapleader = " "  -- Tecla líder (espacio)
 
 -- Navegación entre ventanas
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Ventana izquierda" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Ventana inferior" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Ventana superior" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Ventana derecha" })
+vim.keymap.set("n", "<A-h>", "<C-w>h", { desc = "Ventana izquierda (Alt+h)" })
+vim.keymap.set("n", "<A-j>", "<C-w>j", { desc = "Ventana inferior (Alt+j)" })
+vim.keymap.set("n", "<A-k>", "<C-w>k", { desc = "Ventana superior (Alt+k)" })
+vim.keymap.set("n", "<A-l>", "<C-w>l", { desc = "Ventana derecha (Alt+l)" })
 
 -- Gestión de buffers
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Cerrar buffer" })
@@ -58,3 +58,10 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<CR>", { desc = "Commit" })
 
 -- Crear MR en GitLab (requiere `glab` instalado)
 vim.keymap.set("n", "<leader>gm", "<cmd>!glab mr create --web<CR>", { desc = "Crear MR" })
+
+-- Salir de Terminal-mode a Normal-mode con Esc en :terminal
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal a Normal con Esc" })
+vim.keymap.set("t", "<A-h>", [[<C-\><C-n><C-w>h]], { desc = "Ir a ventana izquierda desde terminal" })
+vim.keymap.set("t", "<A-j>", [[<C-\><C-n><C-w>j]], { desc = "Ir a ventana inferior desde terminal" })
+vim.keymap.set("t", "<A-k>", [[<C-\><C-n><C-w>k]], { desc = "Ir a ventana superior desde terminal" })
+vim.keymap.set("t", "<A-l>", [[<C-\><C-n><C-w>l]], { desc = "Ir a ventana derecha desde terminal" })
