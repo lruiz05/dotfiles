@@ -33,6 +33,28 @@ local function with_gitsigns(fn)
   end
 end
 
+local function cycle_markdown_checkbox()
+  local line = vim.api.nvim_get_current_line()
+  local prefix, state, suffix = line:match("^(%s*[-*+] %[)(.)(%].*)$")
+  if not prefix then
+    return
+  end
+
+  -- Estados:
+  -- [ ] pendiente, [-] en progreso, [x] completado, [>] pospuesto
+  local order = { " ", "-", "x", ">" }
+  local idx = 1
+  for i, value in ipairs(order) do
+    if value == state then
+      idx = i
+      break
+    end
+  end
+
+  local next_state = order[(idx % #order) + 1]
+  vim.api.nvim_set_current_line(prefix .. next_state .. suffix)
+end
+
 -- Navegación entre ventanas
 vim.keymap.set("n", "<A-h>", "<C-w>h", { desc = "Ventana izquierda (Alt+h)" })
 vim.keymap.set("n", "<A-j>", "<C-w>j", { desc = "Ventana inferior (Alt+j)" })
@@ -156,3 +178,7 @@ vim.keymap.set("t", "<A-h>", [[<C-\><C-n><C-w>h]], { desc = "Ir a ventana izquie
 vim.keymap.set("t", "<A-j>", [[<C-\><C-n><C-w>j]], { desc = "Ir a ventana inferior desde terminal" })
 vim.keymap.set("t", "<A-k>", [[<C-\><C-n><C-w>k]], { desc = "Ir a ventana superior desde terminal" })
 vim.keymap.set("t", "<A-l>", [[<C-\><C-n><C-w>l]], { desc = "Ir a ventana derecha desde terminal" })
+
+-- Ciclo de checkboxes Markdown: [ ] -> [-] -> [x] -> [>] -> [ ]
+vim.keymap.set("n", "<C-Space>", cycle_markdown_checkbox, { desc = "Ciclar checkbox Markdown" })
+vim.keymap.set("n", "<C-@>", cycle_markdown_checkbox, { desc = "Ciclar checkbox Markdown (fallback)" })
