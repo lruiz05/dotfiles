@@ -76,6 +76,7 @@ require("config.lsp")        -- Configuración LSP
 require("config.treesitter") -- Configuración Treesitter
 require("config.keymaps")    -- Keymaps personalizados
 require("config.lualine")
+require("config.habits")     -- Comandos de tracking de habitos
 
 -- Tema de colores
 vim.cmd.colorscheme("tokyonight-night")
