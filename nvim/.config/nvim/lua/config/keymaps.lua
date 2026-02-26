@@ -58,16 +58,43 @@ vim.keymap.set("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Salir sin guardar" })
 
 -- Elegir colorscheme
 vim.keymap.set("n", "<leader>ct1", function()
-  vim.cmd.colorscheme("catppuccin")  -- Tema 1 (catppuccin-mocha)
+  vim.cmd.colorscheme("catppuccin")  -- Suave y consistente para sesiones largas.
 end, { desc = "Cambiar a tema 1" })
 
 vim.keymap.set("n", "<leader>ct2", function()
-  vim.cmd.colorscheme("rose-pine")   -- Tema 2 (rose-pine-moon)
+  vim.cmd.colorscheme("rose-pine")   -- Cálido, cómodo para lectura/escritura.
 end, { desc = "Cambiar a tema 2" })
 
 vim.keymap.set("n", "<leader>ct3", function()
-  vim.cmd.colorscheme("monokai-pro")   -- Tema 3 (monokai-pro)
+  vim.cmd.colorscheme("monokai-pro")   -- Contraste alto para foco en código.
 end, { desc = "Cambiar a monokai-pro" })
+
+vim.keymap.set("n", "<leader>ct4", function()
+  vim.cmd.colorscheme("kanagawa-wave") -- Muy balanceado para Go/Python y Markdown.
+end, { desc = "Cambiar a kanagawa" })
+
+vim.keymap.set("n", "<leader>ct5", function()
+  vim.cmd.colorscheme("carbonfox") -- Colores limpios y fatiga visual baja.
+end, { desc = "Cambiar a carbonfox" })
+
+vim.keymap.set("n", "<leader>ct6", function()
+  vim.cmd.colorscheme("onedark") -- Clásico y claro para JS/TS/Python.
+end, { desc = "Cambiar a onedark" })
+
+vim.keymap.set("n", "<leader>ct7", function()
+  vim.o.background = "dark"
+  vim.cmd.colorscheme("github_dark") -- Semántica familiar, ideal para repos grandes.
+end, { desc = "Cambiar a github dark" })
+
+vim.keymap.set("n", "<leader>ct8", function()
+  vim.g.everforest_background = "medium"
+  vim.cmd.colorscheme("everforest") -- Muy cómodo para Neorg y documentación.
+end, { desc = "Cambiar a everforest" })
+
+vim.keymap.set("n", "<leader>ct9", function()
+  vim.o.background = "light"
+  vim.cmd.colorscheme("github_light") -- Opción clara útil para trabajo diurno.
+end, { desc = "Cambiar a github light" })
 
 -- Búsqueda de archivos por nombre (Ctrl+P)
 vim.keymap.set("n", "<C-p>", telescope.find_files, { desc = "Buscar archivos" })

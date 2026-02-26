@@ -62,6 +62,12 @@ require("lazy").setup({
     end,
   },
 
+  { "rebelot/kanagawa.nvim" },
+  { "EdenEast/nightfox.nvim" },
+  { "navarasu/onedark.nvim" },
+  { "projekt0n/github-nvim-theme", name = "github-theme" },
+  { "sainnhe/everforest" },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
