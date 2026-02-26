@@ -40,16 +40,24 @@ local function resolve_server(name)
   return lsp_configs[name]
 end
 
+local function lsp_on_attach(_, bufnr)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Ir a definición" })
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Ver referencias" })
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Ayuda flotante" })
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Renombrar símbolo" })
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code action" })
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Siguiente diagnóstico" })
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Diagnóstico anterior" })
+  vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { buffer = bufnr, desc = "Diagnóstico flotante" })
+end
+
 local function setup_server(server_name)
   local server = resolve_server(server_name)
   if not server then
     return
   end
   server.setup({
-    on_attach = function(_, bufnr)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Ir a definición" })
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Ayuda flotante" })
-    end
+    on_attach = lsp_on_attach,
   })
 end
 
@@ -63,6 +71,7 @@ end
 local lua_ls = resolve_server("lua_ls")
 if lua_ls then
   lua_ls.setup({
+    on_attach = lsp_on_attach,
     settings = {
       Lua = {
         diagnostics = { globals = { "vim" } },
