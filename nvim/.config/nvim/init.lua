@@ -93,3 +93,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 vim.opt.smartindent = true
 vim.opt.autoindent = true
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = true
+vim.opt.undofile = true
