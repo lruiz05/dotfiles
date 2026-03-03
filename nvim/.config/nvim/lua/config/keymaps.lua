@@ -182,3 +182,15 @@ vim.keymap.set("t", "<A-l>", [[<C-\><C-n><C-w>l]], { desc = "Ir a ventana derech
 -- Ciclo de checkboxes Markdown: [ ] -> [-] -> [x] -> [>] -> [ ]
 vim.keymap.set("n", "<C-Space>", cycle_markdown_checkbox, { desc = "Ciclar checkbox Markdown" })
 vim.keymap.set("n", "<C-@>", cycle_markdown_checkbox, { desc = "Ciclar checkbox Markdown (fallback)" })
+
+-- Neorg journal
+vim.keymap.set("n", "<leader>jt", "<cmd>Neorg journal today<CR>", { desc = "Neorg: Journal today" })
+vim.keymap.set("n", "<leader>jm", "<cmd>Neorg journal tomorrow<CR>", { desc = "Neorg: Journal tomorrow" })
+vim.keymap.set("n", "<leader>jy", "<cmd>Neorg journal yesterday<CR>", { desc = "Neorg: Journal yesterday" })
+
+local ok_wk, wk = pcall(require, "which-key")
+if ok_wk then
+  wk.add({
+    { "<leader>j", group = "Journal" },
+  })
+end

@@ -28,6 +28,12 @@ require("lazy").setup({
     end,
   },
 
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
   -- 4. Tu tema de colores
   {
     "folke/tokyonight.nvim",
